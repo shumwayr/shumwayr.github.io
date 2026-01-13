@@ -1,12 +1,346 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Rick Shumway | Finance Analytics</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rick Shumway | Finance Analytics Portfolio</title>
+  <meta name="description" content="Finance Manager specializing in FP&A, forecasting, Power BI, Excel modeling, Python automation, and SQL data pipelines." />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#0f1a2d;
+      --panel2:#0c1628;
+      --text:#e8eefc;
+      --muted:#a9b7d4;
+      --accent:#66a3ff;
+      --border:rgba(255,255,255,.10);
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      --max:1060px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 10% 0%, rgba(102,163,255,.22), transparent 60%),
+                  radial-gradient(900px 600px at 90% 10%, rgba(102,255,224,.10), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 70px}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 0 22px;
+    }
+    .brand{
+      display:flex; gap:10px; align-items:center; font-weight:700; letter-spacing:.2px;
+    }
+    .dot{width:12px;height:12px;border-radius:50%; background:var(--accent); box-shadow:0 0 0 6px rgba(102,163,255,.12)}
+    .navlinks{display:flex; gap:16px; flex-wrap:wrap}
+    .navlinks a{color:var(--muted); font-weight:600; font-size:14px}
+    .navlinks a:hover{color:var(--text)}
+    .hero{
+      display:grid; grid-template-columns: 1.2fr .8fr; gap:18px;
+      margin-top:10px;
+    }
+    @media (max-width: 880px){
+      .hero{grid-template-columns:1fr}
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .heroLeft{padding:26px 24px}
+    .kicker{color:var(--muted); font-weight:700; font-size:13px; letter-spacing:.12em; text-transform:uppercase}
+    h1{margin:10px 0 10px; font-size:42px; line-height:1.08}
+    @media (max-width: 520px){ h1{font-size:34px} }
+    .subtitle{color:var(--muted); font-size:16px; margin:0 0 18px}
+    .pillRow{display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 20px}
+    .pill{
+      padding:8px 10px; border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      color:var(--muted);
+      font-weight:700; font-size:12px;
+    }
+    .btnRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.22);
+      color:var(--text);
+      font-weight:800;
+      font-size:14px;
+    }
+    .btn.primary{
+      background: linear-gradient(180deg, rgba(102,163,255,.95), rgba(102,163,255,.62));
+      border-color: rgba(102,163,255,.55);
+      color:#081226;
+    }
+    .btn:hover{transform: translateY(-1px)}
+    .heroRight{padding:18px}
+    .mini{
+      background:rgba(0,0,0,.20);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:16px;
+    }
+    .mini h3{margin:0 0 8px; font-size:16px}
+    .mini p{margin:0; color:var(--muted); font-size:14px}
+    .mini ul{margin:12px 0 0; padding-left:18px; color:var(--muted); font-size:14px}
+    .section{margin-top:26px}
+    .section h2{
+      font-size:18px; margin:0 0 10px;
+      letter-spacing:.02em;
+    }
+    .grid3{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px}
+    @media (max-width: 900px){ .grid3{grid-template-columns:1fr} }
+    .tile{
+      padding:18px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      background: rgba(0,0,0,.18);
+    }
+    .tile h3{margin:0 0 6px; font-size:16px}
+    .tile p{margin:0; color:var(--muted); font-size:14px}
+    .tagRow{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+    .tag{
+      font-size:12px; font-weight:800;
+      color:rgba(232,238,252,.9);
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      padding:6px 8px;
+      border-radius:999px;
+    }
+    .projects{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    @media (max-width: 980px){ .projects{grid-template-columns:1fr} }
+    .project{
+      padding:18px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(0,0,0,.24), rgba(0,0,0,.12));
+    }
+    .project h3{margin:0 0 6px; font-size:16px}
+    .project .meta{color:var(--muted); font-size:13px; margin:0 0 10px}
+    .project ul{margin:10px 0 12px; padding-left:18px; color:var(--muted); font-size:14px}
+    .project .links{display:flex; gap:10px; flex-wrap:wrap}
+    .project .links a{color:var(--accent); font-weight:800; font-size:13px}
+    .project .links a:hover{text-decoration:underline}
+    .callout{
+      margin-top:14px;
+      padding:16px 18px;
+      border-radius:var(--radius);
+      border:1px solid rgba(102,163,255,.35);
+      background: rgba(102,163,255,.10);
+      color: var(--muted);
+      font-size:14px;
+    }
+    .footer{
+      margin-top:34px;
+      color: var(--muted);
+      font-size:13px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      opacity:.95;
+    }
+    .hr{height:1px; background:var(--border); margin:22px 0}
+  </style>
 </head>
+
 <body>
-  <h1>Rick Shumway</h1>
-  <p>Finance Manager | FP&A & Finance Analytics</p>
-  <p>Power BI • Python • SQL • Excel</p>
+  <div class="wrap">
+    <div class="nav">
+      <div class="brand">
+        <div class="dot"></div>
+        <div>Rick Shumway</div>
+      </div>
+      <div class="navlinks">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="card heroLeft">
+        <div class="kicker">Finance + Data</div>
+        <h1>Finance Analytics Portfolio</h1>
+        <p class="subtitle">
+          Finance Manager focused on forecasting, business partnering, and repeatable analytics pipelines.
+          I turn monthly base data into trusted tables, models, and executive-ready insights using
+          <strong>Power BI</strong>, <strong>Excel</strong>, <strong>Python</strong>, and <strong>SQL</strong>.
+        </p>
+
+        <div class="pillRow">
+          <span class="pill">Forecasting</span>
+          <span class="pill">Revenue / Volume Drivers</span>
+          <span class="pill">Automation</span>
+          <span class="pill">Data Modeling</span>
+          <span class="pill">Executive Reporting</span>
+        </div>
+
+        <div class="btnRow">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="https://www.linkedin.com/in/rick-shumway-64695b8b" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/shumwayr" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="mailto:shumay.rick@gmail.com">Email</a>
+        </div>
+
+        <div class="callout">
+          <strong>Recruiter note:</strong> I’m strongest in “data-side finance” roles—forecasting + stakeholder impact + the ability to
+          maintain scripts, trackers, and SQL-backed datasets.
+        </div>
+      </div>
+
+      <div class="card heroRight">
+        <div class="mini">
+          <h3>What I deliver</h3>
+          <p>Repeatable monthly workflows that don’t break.</p>
+          <ul>
+            <li>Standard input schema → automated transforms</li>
+            <li>Forecast output tables saved to SQL + Excel</li>
+            <li>Power BI semantic models + exec dashboards</li>
+            <li>Audit checks & reconciliation-friendly outputs</li>
+          </ul>
+        </div>
+        <div class="hr"></div>
+        <div class="mini">
+          <h3>Toolbox</h3>
+          <p>Power BI, Power Query, DAX, Excel modeling, Python (pandas), SQL, Git.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="skills" class="section">
+      <h2>Core skills</h2>
+      <div class="grid3">
+        <div class="tile">
+          <h3>Power BI</h3>
+          <p>Star schema modeling, DAX measures, refresh performance, executive storytelling.</p>
+          <div class="tagRow">
+            <span class="tag">Semantic Models</span><span class="tag">DAX</span><span class="tag">Power Query</span>
+          </div>
+        </div>
+        <div class="tile">
+          <h3>Excel</h3>
+          <p>Forecast templates, scenario toggles, audit checks, structured inputs/outputs.</p>
+          <div class="tagRow">
+            <span class="tag">Templates</span><span class="tag">Scenario</span><span class="tag">Controls</span>
+          </div>
+        </div>
+        <div class="tile">
+          <h3>Python + SQL</h3>
+          <p>Reusable scripts that produce output tables, write to SQL, and publish Excel deliverables.</p>
+          <div class="tagRow">
+            <span class="tag">pandas</span><span class="tag">ETL/ELT</span><span class="tag">to_sql</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="projects" class="section">
+      <h2>Highlighted projects</h2>
+
+      <div class="projects">
+        <div class="project">
+          <h3>Power BI Executive Forecast Dashboard</h3>
+          <p class="meta">Actual vs Forecast • Drivers • Drill-down views</p>
+          <ul>
+            <li>Built a model to track performance by time, category, and business unit.</li>
+            <li>Designed measures that align with finance definitions (audit-friendly).</li>
+            <li>Delivered an exec-ready view with clear variance + driver story.</li>
+          </ul>
+          <div class="links">
+            <a href="#" target="_blank" rel="noopener">Demo / screenshots (add link)</a>
+            <a href="#" target="_blank" rel="noopener">Model notes (add link)</a>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Excel Forecast Template + Scenarios</h3>
+          <p class="meta">Base/Upside/Downside • Inputs → Outputs • Checks</p>
+          <ul>
+            <li>Created a structured input sheet and output summary for monthly cadence.</li>
+            <li>Scenario controls with clear assumption visibility.</li>
+            <li>Built in reconciliation checks to catch bad data early.</li>
+          </ul>
+          <div class="links">
+            <a href="#" target="_blank" rel="noopener">Download template (add link)</a>
+            <a href="#" target="_blank" rel="noopener">PDF walkthrough (add link)</a>
+          </div>
+        </div>
+
+        <div class="project">
+          <h3>Python → Forecast Output Table → SQL/Excel</h3>
+          <p class="meta">Standard monthly input • Automated transforms • Persisted output</p>
+          <ul>
+            <li>Reads monthly base data in a fixed schema and validates columns/types.</li>
+            <li>Generates a forecast output table with run metadata + scenario.</li>
+            <li>Writes results to SQL for BI + produces an Excel deliverable for finance.</li>
+          </ul>
+          <div class="links">
+            <a href="#" target="_blank" rel="noopener">GitHub repo (add link)</a>
+            <a href="#" target="_blank" rel="noopener">Sample output table (add link)</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        Tip: replace the “add link” placeholders with (1) a GitHub repo, (2) a PDF export, (3) screenshots in an <code>assets/</code> folder.
+        Keep everything sanitized and non-confidential.
+      </div>
+    </div>
+
+    <div id="process" class="section">
+      <h2>My repeatable workflow (what employers mean by “maintain trackers/code database”)</h2>
+      <div class="grid3">
+        <div class="tile">
+          <h3>1) Standardize inputs</h3>
+          <p>Monthly base data arrives in a fixed schema (columns don’t change). Add checks for missing/invalid values.</p>
+        </div>
+        <div class="tile">
+          <h3>2) Run Python logic</h3>
+          <p>Transform + forecast + reconcile. Output is always a table: period, entity, actual, forecast, scenario, run_ts.</p>
+        </div>
+        <div class="tile">
+          <h3>3) Publish & persist</h3>
+          <p>Save to SQL as the source of truth, generate Excel for finance review, and feed Power BI dashboards.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="contact" class="section">
+      <h2>Contact</h2>
+      <div class="tile">
+        <p style="margin:0;color:var(--muted);font-size:14px;">
+          Best way to reach me:
+          <a style="color:var(--accent);font-weight:800;" href="mailto:shumay.rick@gmail.com">shumay.rick@gmail.com</a>
+          • LinkedIn:
+          <a style="color:var(--accent);font-weight:800;" href="https://www.linkedin.com/in/rick-shumway-64695b8b" target="_blank" rel="noopener">
+            rick-shumway-64695b8b
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>© <span id="y"></span> Rick Shumway • shumwayr.github.io</div>
+      <div>Built with GitHub Pages</div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
