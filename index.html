@@ -470,5 +470,25 @@
       if (e.key === "Escape") closeExcelModal();
     });
   </script>
+   function openExcelModal() {
+    document.getElementById("excelModal").style.display = "block";
+    showExcelTab('input');
+  }
+
+  function closeExcelModal() {
+    document.getElementById("excelModal").style.display = "none";
+  }
+
+  function showExcelTab(tab) {
+    const img = document.getElementById("excelImage");
+
+    // reset tabs
+    document.querySelectorAll(".tabs button").forEach(b => b.classList.remove("active"));
+    document.getElementById(`tab-${tab}`).classList.add("active");
+
+    // switch image
+    img.src = `${tab}.png`;
+  }
+</script>
 </body>
 </html>
