@@ -410,7 +410,7 @@
     <h3 style="margin-top:0;">Excel Forecast Template</h3>
 
     <div class="tabs">
-      <button id="tab-inputs" class="active" onclick="showExcelTab('input')">Inputs</button>
+      <button id="tab-inputs" class="active" onclick="showExcelTab('inputs')">Inputs</button>
       <button id="tab-output" onclick="showExcelTab('output')">Output</button>
       <button id="tab-checks" onclick="showExcelTab('checks')">Checks</button>
     </div>
@@ -419,57 +419,52 @@
   </div>
 </div>
 
-  <script>
-    // Footer year
-    document.getElementById("y").textContent = new Date().getFullYear();
+<script>
+  // Footer year
+  document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Excel modal logic
-    function openExcelModal() {
-      const modal = document.getElementById("excelModal");
-      modal.style.display = "block";
-      modal.setAttribute("aria-hidden", "false");
-      showExcelTab("inputs");
-    }
+  // Open modal
+  function openExcelModal() {
+    document.getElementById("excelModal").style.display = "block";
+    showExcelTab("inputs"); // default tab
+  }
 
-    function closeExcelModal() {
-      const modal = document.getElementById("excelModal");
-      modal.style.display = "none";
-      modal.setAttribute("aria-hidden", "true");
-    }
+  // Close modal
+  function closeExcelModal() {
+    document.getElementById("excelModal").style.display = "none";
+  }
 
-    function showExcelTab(tab) {
-      const img = document.getElementById("excelImage");
+  // Switch tab + image
+  function showExcelTab(tab) {
+    const img = document.getElementById("excelImage");
 
-      const tabInputs = document.getElementById("tabInputs");
-      const tabOutput = document.getElementById("tabOutput");
-      const tabChecks = document.getElementById("tabChecks");
+    // reset active styling
+    document.querySelectorAll("#excelModal .tabs button")
+      .forEach(b => b.classList.remove("active"));
 
-      tabInputs.classList.remove("active");
-      tabOutput.classList.remove("active");
-      tabChecks.classList.remove("active");
+    // activate correct button
+    const activeBtn = document.getElementById(`tab-${tab}`);
+    if (activeBtn) activeBtn.classList.add("active");
 
-      if (tab === "inputs") {
-        img.src = "excel-inputs.png";
-        tabInputs.classList.add("active");
-      } else if (tab === "output") {
-        img.src = "excel-output.png";
-        tabOutput.classList.add("active");
-      } else if (tab === "checks") {
-        img.src = "excel-checks.png";
-        tabChecks.classList.add("active");
-      }
-    }
+    // swap image (matches your repo filenames)
+    const map = {
+      inputs: "input.png",
+      output: "output.png",
+      checks: "checks.png"
+    };
+    img.src = map[tab] || "input.png";
+  }
 
-    // Close modal when clicking outside content
-    document.getElementById("excelModal").addEventListener("click", function(e) {
-      if (e.target.id === "excelModal") closeExcelModal();
-    });
+  // Close modal when clicking outside modal-content
+  document.getElementById("excelModal").addEventListener("click", function(e) {
+    if (e.target.id === "excelModal") closeExcelModal();
+  });
 
-    // Close modal on ESC
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "Escape") closeExcelModal();
-    });
-  </script>
+  // Close on ESC
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") closeExcelModal();
+  });
+</script>
    function openExcelModal() {
     document.getElementById("excelModal").style.display = "block";
     showExcelTab('input');
