@@ -365,13 +365,13 @@
             <li>Generates a forecast output table with run metadata + scenario.</li>
             <li>Writes results to SQL for BI + produces an Excel deliverable for finance.</li>
           </ul>
-          <p style="margin:0; color:var(--muted); font-size:14px;">
-            (Screenshot coming soon — will show code + sample output table.)
-          </p>
-        </div>
-      </div>
-    </div>
-
+          <img
+  src="SQL DB.png"
+  alt="Python → SQLite output"
+  style="width:100%; border-radius:8px; cursor:pointer;"
+  onclick="openPythonModal()"
+/>
+<p class="thumb-caption">Click to explore Python config / to_sql() / SQLite table</p>
     <div id="contact" class="section">
       <h2>Contact</h2>
       <div class="tile">
@@ -408,7 +408,23 @@
     <img id="excelImage" src="input.png" alt="Excel view">
   </div>
 </div>
+<!-- Python/SQL Modal -->
+<div id="pythonModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closePythonModal()">×</span>
 
+    <h3 style="margin-top:0;">Python → SQLite Pipeline</h3>
+
+    <div class="tabs">
+      <button id="py-tab-config" class="active" onclick="showPythonTab('config')">Config</button>
+      <button id="py-tab-to_sql" onclick="showPythonTab('to_sql')">to_sql()</button>
+      <button id="py-tab-runner" onclick="showPythonTab('runner')">Runner</button>
+      <button id="py-tab-sql" onclick="showPythonTab('sql')">SQLite</button>
+    </div>
+
+    <img id="pythonImage" src="Python Code 2.png" alt="Python/SQL view">
+  </div>
+</div>
 <script>
   // Footer year
   document.getElementById("y").textContent = new Date().getFullYear();
