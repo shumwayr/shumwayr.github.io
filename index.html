@@ -470,6 +470,44 @@
   document.addEventListener("keydown", function(e) {
     if (e.key === "Escape") closeExcelModal();
   });
+  // -----------------------------
+// Python/SQL modal logic
+// -----------------------------
+function openPythonModal() {
+  document.getElementById("pythonModal").style.display = "block";
+  showPythonTab("config"); // default tab
+}
+
+function closePythonModal() {
+  document.getElementById("pythonModal").style.display = "none";
+}
+
+function showPythonTab(tab) {
+  const img = document.getElementById("pythonImage");
+
+  // reset active styling
+  document.querySelectorAll("#pythonModal .tabs button")
+    .forEach(b => b.classList.remove("active"));
+
+  // activate correct button
+  const activeBtn = document.getElementById(`py-tab-${tab}`);
+  if (activeBtn) activeBtn.classList.add("active");
+
+  // map tab -> filename (must match EXACT file names in repo)
+  const map = {
+    config: "Python Code 2.png",   // your config block
+    to_sql: "Python Code 1.png",   // your write_forecast_to_sql()
+    runner: "Python Code.png",     // your run_pipeline()
+    sql: "SQL DB.png"              // DB Browser screenshot
+  };
+
+  img.src = map[tab] || "Python Code 2.png";
+}
+
+// Close modal when clicking outside modal-content
+document.getElementById("pythonModal").addEventListener("click", function(e) {
+  if (e.target.id === "pythonModal") closePythonModal();
+});
 </script>
 </body>
 </html>
